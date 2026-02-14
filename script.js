@@ -1,6 +1,8 @@
 // Initialize configuration
 const config = window.VALENTINE_CONFIG;
 
+let yesClickCount = 0;
+
 // Validate configuration
 function validateConfig() {
     const warnings = [];
@@ -76,6 +78,14 @@ window.addEventListener('DOMContentLoaded', () => {
     document.getElementById('question3Text').textContent = config.questions.third.text;
     document.getElementById('yesBtn3').textContent = config.questions.third.yesBtn;
     document.getElementById('noBtn3').textContent = config.questions.third.noBtn;
+
+    const yesBtn1El = document.getElementById('yesBtn1');
+    yesBtn1El.addEventListener('click', () => {
+        yesClickCount += 1;
+        if (yesClickCount >= 6) {
+            showNextQuestion(2);
+        }
+    });
 
     // Create initial floating elements
     createFloatingElements();
